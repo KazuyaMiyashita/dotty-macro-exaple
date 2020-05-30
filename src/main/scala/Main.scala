@@ -1,10 +1,14 @@
+import java.time.Instant
+
 object Main {
 
   def main(args: Array[String]): Unit = {
-    println("Hello world!")
-    println(msg)
-  }
 
-  def msg = "I was compiled by dotty :)"
+    val intShow = summon[Show[Int]]
+    println(intShow.show(42))
+
+    println(summon[Show[Instant]].show(Instant.now()))
+
+  }
 
 }
