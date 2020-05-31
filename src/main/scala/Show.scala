@@ -15,8 +15,20 @@ object Show {
   }
 
   given as Show[String] {
-    override def show(value: String): String = "\"" + value + "\""
-    // todo excape sequense
+    override def show(value: String): String = {
+      val escaped = value.flatMap {
+        case '\\' => "\\\\"
+        case '\b' => "\\b"
+        case '\f' => "\\f"
+        case '\n' => "\\n"
+        case '\r' => "\\r"
+        case '\t' => "\\t"
+        case '\'' => "\\\'"
+        case '\"' => "\\\""
+        case other => other.toString
+      }
+      "\"" + escaped + "\""
+    }
   }
 
   given as Show[Instant] {
