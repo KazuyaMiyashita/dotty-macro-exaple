@@ -37,6 +37,21 @@ object Show {
     }
   }
 
+  given showOption[A](using ev: Show[A]) as Show[Option[A]] {
+    override def show(value: Option[A]): String = {
+      value match {
+        case Some(v) => s"Some(${ev.show(v)})"
+        case None => "None"
+      }
+    }
+  }
+
+  given showList[A](using ev: Show[A]) as Show[List[A]] {
+    override def show(value: List[A]): String = {
+      "List(" + value.map(ev.show).mkString(", ") + ")"
+    }
+  }
+
   import scala.deriving.{Mirror, productElement}
   import scala.compiletime.{constValue, erasedValue, error, summonFrom, summonInline}
 
