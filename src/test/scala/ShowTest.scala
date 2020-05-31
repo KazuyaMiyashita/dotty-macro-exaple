@@ -26,7 +26,7 @@ class ShowTest {
   @Test def instantTest1(): Unit = {
     import java.time.Instant
     assertEquals(
-      """Instant.parse("2007-12-03T10:15:30.123Z")""", // ".000" is lost
+      """Instant.parse("2007-12-03T10:15:30.123Z")""",
       summon[Show[Instant]].show(Instant.parse("2007-12-03T10:15:30.123Z"))
     )
   }
