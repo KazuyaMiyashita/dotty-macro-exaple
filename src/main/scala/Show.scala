@@ -64,7 +64,7 @@ object Show {
 
   inline def showLabels[Labels <: Tuple]: List[String] = {
     inline erasedValue[Labels] match {
-      case _: (l *: ls) => s"${constValue[l]}" :: showLabels[ls]
+      case _: (l *: ls) => constValue[l].toString :: showLabels[ls]
       case _: Unit => Nil
     }
   }
@@ -73,7 +73,7 @@ object Show {
     override def show(value: T): String = {
       inline ev match {
         case m: Mirror.ProductOf[T] => {
-          val tpe: String = s"${constValue[m.MirroredLabel]}"
+          val tpe: String = constValue[m.MirroredLabel]
           val labels: List[String] = showLabels[m.MirroredElemLabels]
           val elems: List[String] = showElems[m.MirroredElemTypes](value, 0)
           buildStr(tpe, labels, elems)

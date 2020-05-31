@@ -1,3 +1,19 @@
+## dotty-macro-example
+
+### Show[A]
+
+```scala
+scala> case class Nyan(foo: Int, bar: String)
+// defined case class Nyan
+
+scala> val nyan = Nyan(42, "piyo")
+val nyan: Nyan = Nyan(42,piyo)
+
+scala> summon[Show[Nyan]].show(nyan)
+val res0: String = Nyan(foo = 42, bar = "piyo")
+
+```
+
 ## sbt project compiled with Dotty
 
 ### Usage

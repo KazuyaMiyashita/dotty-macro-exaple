@@ -104,7 +104,6 @@ class ShowTest {
     case class Bar(value: String)
     case class Mofu(foo: Foo, bar: Bar)
     val mofu = Mofu(foo = Foo(value = 42), bar = Bar(value = "piyo"))
-    println(summon[Show[Mofu]].show(mofu))
     assertEquals(
       """Mofu(foo = Foo(value = 42), bar = Bar(value = "piyo"))""",
       summon[Show[Mofu]].show(mofu)
