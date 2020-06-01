@@ -1,4 +1,5 @@
 import java.time.Instant
+import java.util.UUID
 
 trait Show[A] {
   def show(value: A): String
@@ -34,6 +35,12 @@ object Show {
   given as Show[Instant] {
     override def show(value: Instant): String = {
       s"""Instant.parse("${value.toString}")"""
+    }
+  }
+
+  given as Show[UUID] {
+    override def show(value: UUID): String = {
+      s"""UUID.fromString("${value.toString}")"""
     }
   }
 

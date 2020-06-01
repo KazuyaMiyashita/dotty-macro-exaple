@@ -47,6 +47,14 @@ class ShowTest {
     )
   }
 
+  @Test def uuidTest(): Unit = {
+    import java.util.UUID
+    assertEquals(
+      """UUID.fromString("ddbab01f-97cf-4e15-bf26-402c7b6a17b6")""",
+      summon[Show[UUID]].show(UUID.fromString("ddbab01f-97cf-4e15-bf26-402c7b6a17b6"))
+    )
+  }
+
   @Test def optionTest1(): Unit = {
     val value = Some("a")
     assertEquals(
